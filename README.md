@@ -101,12 +101,13 @@ gtid 브랜치에서 `my.cnf` 변경사항 확인하기
 ### Slave Node의 복제 구성에서 변경 사항 적용하기
 
 ```
+STOP REPLICA;
 CHANGE MASTER TO
   MASTER_HOST='mysql-master',
   MASTER_USER='repl',
   MASTER_PASSWORD='replpw',
   MASTER_AUTO_POSITION = 1;
-START SLAVE;
+START REPLICA;
 
 ```
 
