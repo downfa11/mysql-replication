@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mysql-master:
+    image: mysql:8.0
+    container_name: mysql-master
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+    volumes:
+      - ./master/my.cnf:/etc/mysql/my.cnf
+      - ./master/init:/docker-entrypoint-initdb.d
+
+  mysql-slave:
+    image: mysql:8.0
+    container_name: mysql-slave
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+    volumes:
+      - ./slave/my.cnf:/etc/mysql/my.cnf
+      - ./slave/init:/docker-entrypoint-initdb.d
